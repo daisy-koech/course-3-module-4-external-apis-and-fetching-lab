@@ -31,6 +31,12 @@ document.getElementById("fetch-alerts").addEventListener("click", () => {
     const state = input.value.trim();
     const error = document.getElementById("error-message");
 
+    if (!state) {
+        error.textContent = "Please enter a state code (e.g. CA)";
+        error.classList.remove("hidden");
+        return;
+    }
+
     input.value = "";
 
     //fetch data from the API
@@ -38,7 +44,7 @@ document.getElementById("fetch-alerts").addEventListener("click", () => {
     .then (data => {
         error.textContent = "";
         error.classList.add("hidden");
-        
+
         displayAlerts(data);
     })
 
